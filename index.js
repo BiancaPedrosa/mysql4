@@ -4,6 +4,7 @@ import { engine } from 'express-handlebars';
 import bodyParser from 'body-parser';
 import produtoRoutes from './routes/produtoRoutes.js'; // Import your product routes
 import faleRoutes from './routes/faleRoutes.js'; // Import your faleConosco routes
+import 'dotenv/config'; // For ES Modules (if your app uses "type": "module" in package.json)
 const app = express();
 
 // Configure Handlebars
