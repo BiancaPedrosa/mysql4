@@ -1,19 +1,20 @@
 {{! views/edit_produto.handlebars }}
 
-<h1>Editar Produto: {{produto.nome}}</h1>
+<div class="container text-center">
+    <h1>Editar Produto: {{produto.nome}}</h1>
 
-<form action="/produtos/edit/{{produto.id}}" method="POST">
-    <input type="hidden" name="id" value="{{produto.id}}"> {{!-- Hidden input for the ID --}}
-
-    <label for="nome">Nome:</label><br>
-    <input type="text" id="nome" name="nome" value="{{produto.nome}}" required><br><br>
-
-    <label for="preco">Preço:</label><br>
-    <input type="number" id="preco" name="preco" step="0.01" value="{{produto.preco}}" required><br><br>
-
-    <button type="submit">Salvar Alterações</button>
-    <a href="/produtos">Cancelar</a>
-</form>
-
-{{!-- Optional: Add a link to go back to the product list --}}
-<p><a href="/produtos">Voltar para a lista de produtos</a></p> 
+    <form action="/produtos/edit/{{produto.id}}" method="POST">
+        <input type="hidden" name="id" value="{{produto.id}}"> {{!-- Hidden input for the ID --}}
+        <div class="form-group">
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome" value="{{produto.nome}}" required><br><br>
+        </div>
+            <div class="form-group">
+            <label for="preco">Preço:</label><br>
+            <input type="number" id="preco" name="preco" step="0.01" value="{{produto.preco}}" required>
+        </div>
+        <button class="btn btn-primary"type="submit">Salvar Alterações</button>
+        <a class="btn btn-secondary" href="/produtos">Cancelar</a>
+    </form>
+    <p><a class="btn btn-primary" href="/produtos">Voltar para a lista de produtos</a></p> 
+</div>
