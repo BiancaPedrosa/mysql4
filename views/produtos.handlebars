@@ -1,37 +1,44 @@
 {{! views/produtos.handlebars }}
+<div class="container text-center">
+    <h1>Gerenciador de Produtos</h1>
+    
+    {{!-- Display the list of products --}}
+    {{> produtosList produtos=produtos}}
 
-<h1>Lista de Produtos</h1>
+    {{!-- Link to add a new product --}}
+    <p><a href="/produtos/new" class="btn btn-primary">Adicionar Novo Produto</a></p>
+    
+    {{!-- Link to contact us --}}
+    <p><a href="/fale/new" class="btn btn-secondary">Fale Conosco</a></p>
 
-{{#if produtos}}
-    <table>
+
+</div>
+{{!-- Partial for displaying the list of products --}}
+{{#*inline "produtosList"}}
+    <table class="table table-striped">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Nome</th>
                 <th>Preço</th>
                 <th>Ações</th>
             </tr>
-        </thead>
+        </thead>    
         <tbody>
             {{#each produtos}}
-            <tr>
-                <td>{{nome}}</td>
-                <td>R$ {{preco}}</td>
-                <td>
-                    {{!-- Edit Link --}}
-                    <a href="/produtos/edit/{{id}}">Editar</a> 
-                    {{!-- Delete Form --}}
-                    <form action="/produtos/delete/{{id}}" method="POST" style="display:inline;">
-                        <input type="hidden" name="id" value="{{id}}">
-                        <button type="submit" style="background:none; border:none; padding:0; cursor:pointer; color:blue; text-decoration:underline;">Excluir</button>
-                    </form>
-                </td>
-            </tr>
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.nome}}</td>
+                    <td>R$ {{this.preco}}</td>
+                    <td>
+                        <a href="/produtos/edit/{{this.id}}" class="btn btn-warning">Editar</a>
+                        <form action="/produtos/delete/{{this.id}}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
             {{/each}}
         </tbody>
     </table>
-{{else}}
-    <p>Nenhum produto cadastrado.</p>
-{{/if}}
-
-<p><a href="/produtos/new">Adicionar Novo Produto</a></p>
-<p><a href="/fale/new">Fale Conosco</a></p>
+{{/inline}}
+{{!-- End of partial for displaying the list of products --}}            
